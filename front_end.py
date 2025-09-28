@@ -102,4 +102,3 @@ class Calculator_visuals(CTk):
         self.BUTTON_EQ.grid(row=0, column=0, padx=5, pady=5,)
 
 window = Calculator_visuals()
-window.mainloop()
