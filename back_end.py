@@ -22,14 +22,14 @@ def handle_click(n, ENTRY):
 
             update_entry()
 
-        except ZeroDivisionError:  # ловимо ділення на 0
+        except ZeroDivisionError:  # Division by 0
             numbers_str.clear()
-            numbers_str.append("ти гей?")
+            numbers_str.append("You can't divide by 0")
             update_entry()
 
-        except Exception:  # всі інші помилки
+        except Exception:  # Other Errors
             numbers_str.clear()
-            numbers_str.append("Чоза хуйня?")
+            numbers_str.append("Error not found")
             update_entry()
 
 

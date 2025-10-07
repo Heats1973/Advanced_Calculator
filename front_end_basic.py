@@ -101,4 +101,4 @@ class Calculator_visuals(CTk):
                                    fg_color="grey22", text="=", font=self.ENTRY_FONT, text_color="cyan", command=lambda: handle_click("=", self.ENTRY))
         self.BUTTON_EQ.grid(row=0, column=0, padx=5, pady=5,)
 
-window = Calculator_visuals()
+window_base = Calculator_visuals()
