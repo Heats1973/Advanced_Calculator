@@ -2,14 +2,17 @@ from customtkinter import *
 from back_end import *
 
 
+
 #front_end part
 class Calculator_visuals(CTk):
-    def __init__(self):
+    def __init__(self, switch_to_advanced):
         super().__init__()
+        self.switch_to_advanced = switch_to_advanced
         self.title("Calculator")
         self.geometry("550x750")
         self.font = ("Comic Sans MS", 50, "bold")
         self.ENTRY_FONT = ("Comic Sans MS", 20, "bold")
+        self.bind_all("<Key>", self.key_pressed)
 
         #Entry_Frame
         self.ENTRY_FRAME = CTkFrame(self, width = 550, height=450, corner_radius= 16)
@@ -101,4 +104,24 @@ class Calculator_visuals(CTk):
                                    fg_color="grey22", text="=", font=self.ENTRY_FONT, text_color="cyan", command=lambda: handle_click("=", self.ENTRY))
         self.BUTTON_EQ.grid(row=0, column=0, padx=5, pady=5,)
 
-window_base = Calculator_visuals()
+        #ADVANCED_BUTTON
+        # Button_OPTION
+        self.BUTTON_ADV = CTkButton(self, width=300, height=100, corner_radius=16, fg_color="gray", text="Switch to advanced mode ",
+                                 font = (("Comic Sans MS", 18, "bold")),
+                                    command = self.switch_to_advanced)
+
+        self.BUTTON_ADV.grid(row=2, column=0, padx=5, pady=5)
+
+    def key_pressed(self, event):
+        key = event.char
+
+        # Перевірка на допустимі символи
+        allowed_keys = "0123456789+-*/().^,"
+        if key in allowed_keys:
+            handle_click(key, self.ENTRY)
+        elif key == "\r":  # Enter
+            handle_click("=", self.ENTRY)
+        elif key == "\x08":  # Backspace
+            handle_click("⌫", self.ENTRY)
+        elif key.lower() == "c":
+            handle_click("C", self.ENTRY)
